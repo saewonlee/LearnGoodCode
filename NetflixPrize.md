@@ -103,10 +103,10 @@ print(df.iloc[::5000000, :])
 In [5] :
 
 ```python
-p = df.groupby('Rating')['Rating'].agg(['count'])
+p = df.groupby('Rating')['Rating'].agg(['count'])			#grouping df by Rating, and to count grouped Rating 
 
 # get movie count
-movie_count = df.isnull().sum()[1]
+movie_count = df.isnull().sum()[1]			# sum all NaN values  
 
 # get customer count
 cust_count = df['Cust_Id'].nunique() - movie_count
