@@ -23,15 +23,15 @@ There is another file contains the mapping of Movie ID to the movie background l
 In [1]:
 
 ```python
-import pandas as pd                 # Pandas : High-level data manipulation tool
+import pandas as pd					# Pandas : High-level data manipulation tool
 import numpy as np					# Numpy  : a library used for working with arrays 
 import math
 import re
 from scipy.sparse import csr_matrix
-import matplotlib.pyplot as plt     # matplotlib : Visualization tool
-import seaborn as sns               # seaborn : Fancy statistics chart tool
-from surprise import Reader, Dataset, SVD      # Surpise provides predictive algorithms like SVD
-from surprise.model_selection import cross_validate  # cross_validate 
+import matplotlib.pyplot as plt		# matplotlib : Visualization tool
+import seaborn as sns				# seaborn : Fancy statistics chart tool
+from surprise import Reader, Dataset, SVD		# Surpise provides predictive algorithms like SVD
+from surprise.model_selection import cross_validate				# cross_validate 
 sns.set_style("darkgrid")
 ```
 
