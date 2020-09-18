@@ -2,17 +2,19 @@
 
 > The winner's code that has received the most up-votes
 >
+> ##### comments written by Astro Lee
+>
 > reference: [Netflix Prize Note](https://bit.ly/2FN160C)
 
 *Note*
 
 ```
-Each data file (there are 4 of them) contains below columns:
+Each data file (there are 4 of them) contains below columns: 
 
-Movie ID (as first line of each new movie record / file)
-Customer ID
-Rating (1 to 5)
-Date they gave the ratings
+- Movie ID (as first line of each new movie record / file)
+- Customer ID
+- Rating (1 to 5)
+- Date they gave the ratings
 There is another file contains the mapping of Movie ID to the movie background like name, year of release, etc
 ```
 
@@ -21,15 +23,15 @@ There is another file contains the mapping of Movie ID to the movie background l
 In [1]:
 
 ```python
-import pandas as pd
-import numpy as np
+import pandas as pd                 # Pandas : High-level data manipulation tool
+import numpy as np					# Numpy  : a library used for working with arrays 
 import math
 import re
 from scipy.sparse import csr_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
-from surprise import Reader, Dataset, SVD
-from surprise.model_selection import cross_validate
+import matplotlib.pyplot as plt     # matplotlib : Visualization tool
+import seaborn as sns               # seaborn : Fancy statistics chart tool
+from surprise import Reader, Dataset, SVD      # Surpise provides predictive algorithms like SVD
+from surprise.model_selection import cross_validate  # cross_validate 
 sns.set_style("darkgrid")
 ```
 
@@ -39,13 +41,13 @@ In [2]:
 
 ```python
 # Skip date
-df1 = pd.read_csv('../input/combined_data_1.txt', header = None, names = ['Cust_Id', 'Rating'], usecols = [0,1])
+df1 = pd.read_csv('../input/combined_data_1.txt', header = None, names = ['Cust_Id', 'Rating'], usecols = [0,1])                    # reading a dataset and make a table 
 
-df1['Rating'] = df1['Rating'].astype(float)
+df1['Rating'] = df1['Rating'].astype(float)    # Rating to float-typed data
 
-print('Dataset 1 shape: {}'.format(df1.shape))
+print('Dataset 1 shape: {}'.format(df1.shape)) # shows the number of rows and columns
 print('-Dataset examples-')
-print(df1.iloc[::5000000, :])
+print(df1.iloc[::5000000, :])                  # steps by 500000
 ```
 
 ![image-20200918163612750](C:\Users\user\LearnGoodCode\NetflixPrize.assets\image-20200918163612750.png)
@@ -67,6 +69,9 @@ In [3]:
 #print('Dataset 2 shape: {}'.format(df2.shape))
 #print('Dataset 3 shape: {}'.format(df3.shape))
 #print('Dataset 4 shape: {}'.format(df4.shape))
+
+
+# loading other datasets
 ```
 
 
@@ -79,12 +84,12 @@ In [4]:
 df = df1
 #df = df1.append(df2)
 #df = df.append(df3)
-#df = df.append(df4)
+#df = df.append(df4)                 # merge different datasets by append()
 
 df.index = np.arange(0,len(df))
 print('Full dataset shape: {}'.format(df.shape))
 print('-Dataset examples-')
-print(df.iloc[::5000000, :])
+print(df.iloc[::5000000, :])               
 ```
 
 ![image-20200918163726240](C:\Users\user\LearnGoodCode\NetflixPrize.assets\image-20200918163726240.png)
