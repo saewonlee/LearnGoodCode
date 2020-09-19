@@ -48,6 +48,7 @@ df1['Rating'] = df1['Rating'].astype(float)    # Rating to float-typed data
 print('Dataset 1 shape: {}'.format(df1.shape)) # shows the number of rows and columns
 print('-Dataset examples-')
 print(df1.iloc[::5000000, :])                  # steps by 500000
+												# .iloc() means making index with integer 
 ```
 
 ![image-20200918163612750](C:\Users\user\LearnGoodCode\NetflixPrize.assets\image-20200918163612750.png)
@@ -106,20 +107,20 @@ In [5] :
 p = df.groupby('Rating')['Rating'].agg(['count'])			#grouping df by Rating, and to count grouped Rating 
 
 # get movie count
-movie_count = df.isnull().sum()[1]			# sum all NaN values  
+movie_count = df.isnull().sum()[1]			# sum all NaN values to allocate em to movie count 
 
 # get customer count
-cust_count = df['Cust_Id'].nunique() - movie_count
+cust_count = df['Cust_Id'].nunique() - movie_count			# Cust_Id's unique values minus NaN values
 
 # get rating count
-rating_count = df['Cust_Id'].count() - movie_count
+rating_count = df['Cust_Id'].count() - movie_count			# Cust_Id's total minus movie_count
 
 ax = p.plot(kind = 'barh', legend = False, figsize = (15,10))
 plt.title('Total pool: {:,} Movies, {:,} customers, {:,} ratings given'.format(movie_count, cust_count, rating_count), fontsize=20)
-plt.axis('off')
+plt.axis('off')			# generating a bar chart shwoing different ratings
 
 for i in range(1,6):
-    ax.text(p.iloc[i-1][0]/4, i-1, 'Rating {}: {:.0f}%'.format(i, p.iloc[i-1][0]*100 / p.sum()[0]), color = 'white', weight = 'bold')
+    ax.text(p.iloc[i-1][0]/4, i-1, 'Rating {}: {:.0f}%'.format(i, p.iloc[i-1][0]*100 / p.sum()[0]), color = 'white', weight = 'bold')			# showing ratio of each rating.															# .iloc() makes index with integer
 ```
 
 ![image-20200918163850754](C:\Users\user\LearnGoodCode\NetflixPrize.assets\image-20200918163850754.png)
