@@ -1,6 +1,6 @@
 ## Netflix Prize Code for a Movie Recommendation System
 
-> The winner's code that has received the most up-votes
+> The winner's code that has received the largest number of up-votes.
 >
 > ##### comments written by Astro Lee
 >
